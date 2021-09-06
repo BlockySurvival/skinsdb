@@ -75,7 +75,12 @@ local function skins_sort(skinslist)
 		if a_id ~= b_id then
 			return a:get_meta("_sort_id") < b:get_meta("_sort_id")
 		else
-			return a:get_meta("name") < b:get_meta("name")
+			local aname = a:get_meta("name")
+			local bname = b:get_meta("name")
+			if aname and bname then
+				return aname < bname
+			end
+			return false
 		end
 	end)
 end
